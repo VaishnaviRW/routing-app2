@@ -29,6 +29,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { EditComponent } from './component/edit/edit.component';
+
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -37,19 +46,25 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     UsersDashboardComponent,
     ProductsDashboardComponent,
     FairsDashboardComponent,
-   NavbarComponent,
+    NavbarComponent,
+
+    
     GetConfirmComponent,
     PageNotFoundComponent,
     StudentDashboardComponent,
     ProfileComponent,
     CoursesComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    EditComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule ,
 
     MatCardModule,
     MatButtonModule,

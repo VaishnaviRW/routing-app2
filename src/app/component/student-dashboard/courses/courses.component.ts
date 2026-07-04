@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CoursesService } from 'src/app/service/course.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-courses',
@@ -7,32 +12,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  coursesArr = [
-    {
-      courseId: 'C101',
-      courseName: 'Angular',
-      duration: '3 Months',
-      trainer: 'John',
-      fees: 15000
-    },
-    {
-      courseId: 'C102',
-      courseName: 'React',
-      duration: '2 Months',
-      trainer: 'Smith',
-      fees: 12000
-    }
-  ];
+  coursesArr: any[] = [];
 
-  constructor() { }
+  constructor(
+    private courseService: CoursesService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private dialog:MatDialog 
+  ) { }
 
-  ngOnInit(): void {}
-
-  onEdit(id: string) {
-    console.log('Edit Course', id);
+  ngOnInit(): void {
+    this.getAllCourses();
   }
 
-  onDelete(id: string) {
-    console.log('Delete Course', id);
+  getAllCourses() {
+    this.coursesArr = this.courseService.fetchAllCourses();
+  }
+
+  onEdit(courseId: string) {
+    this.router.navigate([
+      '/student-dashboard',
+      'courses',
+      courseId,
+      'edit'
+    ]);
+  }
+
+  onDelete(courseId: string) {
+
+    const dialogRef = this.dialog.open(
+      ConfirmDialogComponent,
+      {
+        width: '400px',
+        data: {
+          message: 'Are you sure you want to delete this course?'
+        }
+      }
+    );
+  
+    dialogRef.afterClosed().subscribe((res: any) => {
+  
+      if (res) {
+  
+        this.courseService.removeCourse(courseId);
+  
+        this.getAllCourses();
+  
+        this.snackBar.open(
+          'Course Deleted Successfully !!',
+          'Close',
+          {
+            duration: 3000
+          }
+        );
+      }
+    });
   }
 }
