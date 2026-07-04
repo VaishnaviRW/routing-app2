@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12">
+  
+      <mat-card *ngFor="let course of coursesArr">
+        <mat-card-content>
+  
+          <h3>{{ course.courseName }}</h3>
+  
+          <p>
+            Duration :
+            <strong class="text-primary">
+              {{ course.duration }}
+            </strong>
+          </p>
+  
+          <p>
+            Trainer :
+            <strong class="text-success">
+              {{ course.trainer }}
+            </strong>
+          </p>
+  
+          <p>
+            Fees :
+            <strong class="text-warning">
+              ₹{{ course.fees }}
+            </strong>
+          </p>
+  
+        </mat-card-content>
+  
+        <mat-divider></mat-divider>
+  
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onEdit(course.courseId)">
+            Edit
+          </button>
+  
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="onDelete(course.courseId)">
+            Delete
+          </button>
+        </mat-card-actions>
+  
+      </mat-card>
+  
+    </div>
+  </div>
