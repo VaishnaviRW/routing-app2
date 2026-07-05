@@ -1,27 +1,88 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { EditProComponent } from '../../edit-pro/edit-pro.component';
+import { AddStudentComponent } from '../../add-student/add-student.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
-  studentForm!: FormGroup;
+  student: any = {
+    name: 'Rahul Sharma',
+    studentId: 'ST101',
+    email: 'rahul@gmail.com',
+    mobile: '9876543210',
+    course: 'Angular',
+    trainer: 'John',
+    attendance: '92%',
+    city: 'Mumbai',
+    profilePhoto: 'https://i.pravatar.cc/150?img=1'
+  };
 
-  constructor() { }
+  studentsArr: any[] = [];
 
-  ngOnInit(): void {
-    this.studentForm = new FormGroup({
-      fullName: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      mobile: new FormControl(null, [Validators.required]),
-      address: new FormControl(null, [Validators.required])
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
+
+  openEditProfileForm() {
+
+    const dialogRef = this.dialog.open(
+      EditProComponent,
+      {
+        width: '700px',
+        data: this.student
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(res => {
+
+      if(res){
+
+        this.student = {
+          ...res
+        };
+
+        this.snackBar.open(
+          'Profile Updated Successfully',
+          'Close',
+          {
+            duration: 3000
+          }
+        );
+      }
     });
   }
 
-  onSubmit() {
-    console.log(this.studentForm.value);
+  openAddStudentForm() {
+
+    const dialogRef = this.dialog.open(
+      AddStudentComponent,
+      {
+        width: '700px'
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(res => {
+
+      if(res){
+
+        this.studentsArr.push(res);
+
+        this.snackBar.open(
+          'Student Added Successfully',
+          'Close',
+          {
+            duration: 3000
+          }
+        );
+      }
+    });
   }
 }

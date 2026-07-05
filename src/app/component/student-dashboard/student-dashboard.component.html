@@ -1,24 +1,68 @@
-<div class="row">
-    <div class="col-md-3">
-        <div class="list-group">
-            <a routerLink="profile" class="list-group-item">
-                Profile
-            </a>
+<div class="container-fluid mt-4">
 
-            <a routerLink="courses" class="list-group-item">
-                Courses
-            </a>
+    <div class="row">
 
-            <a routerLink="attendance" class="list-group-item">
-                Attendance
-            </a>
+        <!-- Sidebar -->
+        <div class="col-md-3">
+
+            <mat-card class="sidebar-card">
+
+                <div class="profile-section">
+
+                    <img
+                        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                        alt="student">
+
+                    <h5>Student Dashboard</h5>
+
+                </div>
+
+                <div class="list-group">
+
+                    <a
+                        routerLink="profile"
+                        routerLinkActive="active-link"
+                        class="list-group-item">
+
+                        <mat-icon>person</mat-icon>
+                        Profile
+                    </a>
+
+                    <a
+                        routerLink="courses"
+                        routerLinkActive="active-link"
+                        class="list-group-item">
+
+                        <mat-icon>menu_book</mat-icon>
+                        Courses
+                    </a>
+
+                    <a
+                        routerLink="attendance"
+                        routerLinkActive="active-link"
+                        class="list-group-item">
+
+                        <mat-icon>fact_check</mat-icon>
+                        Attendance
+                    </a>
+
+                </div>
+
+            </mat-card>
+
         </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+
+            <mat-card class="content-card">
+
+                <router-outlet></router-outlet>
+
+            </mat-card>
+
+        </div>
+
     </div>
 
-    <div class="col-md-9">
-        <router-outlet></router-outlet>
-    </div>
 </div>
-
-
-  

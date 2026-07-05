@@ -1,1 +1,33 @@
-<p>attendance works!</p>
+<div class="container mt-4">
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openAttendanceDialog()">
+      Mark Attendance
+    </button>
+  
+    <mat-card
+      class="mt-3"
+      *ngFor="let att of attendanceArr">
+  
+      <mat-card-content>
+  
+        <h3>{{att.name}}</h3>
+  
+        <p>
+          Status :
+          <strong
+            [ngClass]="{
+            'text-success': att.status === 'Present',
+            'text-danger': att.status === 'Absent'
+          }">
+            {{att.status}}
+          </strong>
+        </p>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  
+  </div>

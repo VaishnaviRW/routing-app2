@@ -32,9 +32,17 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { EditComponent } from './component/edit/edit.component';
 
 
+
+import { MatSelectModule } from '@angular/material/select';
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { AttendanceDialogComponent } from './component/student-dashboard/attendance/attendance-dialog/attendance-dialog.component';
+import { AddStudentComponent } from './component/add-student/add-student.component';
+import { EditProComponent } from './component/edit-pro/edit-pro.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -56,7 +64,11 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
     CoursesComponent,
     AttendanceComponent,
     EditComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AttendanceDialogComponent,
+    AddStudentComponent,
+    AddStudentComponent,
+    EditProComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +77,8 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule ,
+    MatSelectModule ,
+    MatIconModule,
 
     MatCardModule,
     MatButtonModule,

@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Mark Attendance</h2>
+
+<mat-dialog-content>
+
+  <form [formGroup]="attendanceForm">
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Student Name</mat-label>
+      <input
+        matInput
+        formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Status</mat-label>
+
+      <mat-select formControlName="status">
+
+        <mat-option value="Present">
+          Present
+        </mat-option>
+
+        <mat-option value="Absent">
+          Absent
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button
+    mat-raised-button
+    color="warn"
+    mat-dialog-close>
+    Cancel
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()">
+    Mark Attendance
+  </button>
+
+</mat-dialog-actions>
